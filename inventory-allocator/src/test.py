@@ -41,6 +41,16 @@ class TestInventoryAllocator(unittest.TestCase):
         ia.allocateInventory()
 
         self.assertEqual(ia.distribution, expected)
+    
+    def test_choosesCheapestOption(self):
+        order = {'apple': 5}
+        inventory = [{'name': 'owd', 'inventory': {'apple': 5}}, {'name': 'de', 'inventory': {'apple': 5}}]
+        expected = [{'owd': {'apple': 5}}]
+
+        ia = InventoryAllocator(order, inventory)
+        ia.allocateInventory()
+
+        self.assertEqual(ia.distribution, expected)
 
 
 if __name__ == '__main__':
